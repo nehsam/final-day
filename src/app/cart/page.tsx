@@ -71,7 +71,7 @@ export default function Cart() {
         <div className="bg-white rounded-lg shadow-sm text-center py-16">
           <ShoppingBag className="h-16 w-16 mx-auto text-gray-400 mb-4" />
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Your cart is empty</h2>
-          <p className="text-gray-500 mb-6">Looks like you haven't added anything to your cart yet</p>
+          <p className="text-gray-500 mb-6">Looks like you haven&apos;t added anything to your cart yet</p>
           <button
             onClick={handleContinueShopping}
             className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"

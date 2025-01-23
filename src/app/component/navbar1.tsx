@@ -75,11 +75,11 @@ const Navbar = () => {
         setIsLoading(false);
       }
     }, 300),
-    []
+    [client]
   );
 
   // Debounce utility function
-  function debounce<T extends (...args: any[]) => void>(func: T, wait: number): (...args: Parameters<T>) => void {
+  function debounce<T extends (...args: any[]) => Promise<void>>(func: T, wait: number): (...args: Parameters<T>) => void {
     let timeout: NodeJS.Timeout;
     return (...args: Parameters<T>) => {
       clearTimeout(timeout);
@@ -115,7 +115,8 @@ const Navbar = () => {
     setSearchResults([]);
   };
   const { user } = useUser();
-  const userId = user?.id || useAuth().userId;
+  const auth = useAuth();
+  const userId = user?.id || auth.userId;
 
   return (
     <nav className="w-full bg-white shadow-sm">
