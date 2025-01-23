@@ -13,6 +13,8 @@ import Link from "next/link";
 import { LucideShoppingCart } from "lucide-react";
 import { RiDashboardLine } from "react-icons/ri";
 import { UserButton, useAuth } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
+import Image from "next/image";
 
 // Sanity client configuration
 const client = createClient({
@@ -77,9 +79,9 @@ const Navbar = () => {
   );
 
   // Debounce utility function
-  function debounce(func: Function, wait: number) {
+  function debounce<T extends (...args: any[]) => void>(func: T, wait: number): (...args: Parameters<T>) => void {
     let timeout: NodeJS.Timeout;
-    return (...args: any[]) => {
+    return (...args: Parameters<T>) => {
       clearTimeout(timeout);
       timeout = setTimeout(() => func(...args), wait);
     };
@@ -112,8 +114,8 @@ const Navbar = () => {
     setSearchQuery("");
     setSearchResults([]);
   };
-
-  const {userId} = useAuth ();
+  const { user } = useUser();
+  const userId = user?.id || useAuth().userId;
 
   return (
     <nav className="w-full bg-white shadow-sm">
@@ -159,9 +161,11 @@ const Navbar = () => {
                     <div className="flex justify-between items-center">
                       <div className="flex items-center gap-3">
                         {product.imageUrl && (
-                          <img
+                          <Image
                             src={product.imageUrl}
                             alt={product.title}
+                            width={48}
+                            height={48}
                             className="w-12 h-12 object-cover rounded"
                           />
                         )}

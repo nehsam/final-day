@@ -30,7 +30,7 @@ const Dashboard = () => {
   }
 
   const [products, setProducts] = useState<Product[]>([]);
-  const [orders, setOrders] = useState([]);
+  const [ ,setOrders] = useState([]);
 
   useEffect(() => {
     axios

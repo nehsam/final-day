@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 type CartItem = {
   _id: string;
@@ -87,9 +88,11 @@ export default function Cart() {
                 <div key={item._id} className="bg-white rounded-lg shadow-sm p-4 hover:shadow-lg transition-shadow duration-200">
                   <div className="flex items-start gap-4">
                     <div className="relative w-24 h-24 flex-shrink-0">
-                      <img
-                        src={item.imageUrl || "/api/placeholder/96/96"}
+                      <Image
+                        src={item.imageUrl || "/placeholder.png"}
                         alt={item.title}
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover rounded-lg"
                       />
                     </div>
